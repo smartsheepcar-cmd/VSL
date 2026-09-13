@@ -15,20 +15,6 @@
     }
   }
 
-  // Sticky mobile CTA: show once the visitor scrolls past the hero.
-  const stickyCta = document.getElementById('sticky-cta');
-  const hero = document.querySelector('.hero');
-
-  if (stickyCta && hero) {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        stickyCta.classList.toggle('show', !entry.isIntersecting);
-      },
-      { threshold: 0 }
-    );
-    observer.observe(hero);
-  }
-
   // Scroll-reveal: fade/slide elements in as they enter the viewport.
   const revealEls = document.querySelectorAll('.reveal');
   if (revealEls.length) {
