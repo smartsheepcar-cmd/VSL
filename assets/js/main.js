@@ -212,10 +212,12 @@
     }
   }
 
-  // Lead form: client-side only for now.
-  // TODO: wire up to the real CRM / webhook / sheet that should receive the leads.
+  // Lead form: sends each submission to a Make.com webhook, which appends
+  // the row to the team's Google Sheet.
+  const LEAD_WEBHOOK_URL = 'https://hook.eu1.make.com/e73ic13hesf3o9q35reh349nsulu07yb';
   const form = document.getElementById('lead-form');
   const status = document.getElementById('form-status');
+  const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
 
   if (form) {
     form.addEventListener('submit', (e) => {
@@ -224,8 +226,28 @@
         form.reportValidity();
         return;
       }
-      form.reset();
-      if (status) status.classList.add('show');
+
+      const payload = {
+        fullName: form.elements['full-name'].value.trim(),
+        phone: form.elements['phone'].value.trim(),
+        email: form.elements['email'].value.trim(),
+        marketingConsent: form.elements['marketing-consent'].checked,
+      };
+
+      if (submitBtn) submitBtn.disabled = true;
+
+      fetch(LEAD_WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+        body: JSON.stringify(payload),
+      })
+        .catch((err) => console.error('Lead webhook failed:', err))
+        .finally(() => {
+          if (submitBtn) submitBtn.disabled = false;
+          form.reset();
+          if (status) status.classList.add('show');
+        });
     });
   }
 })();
