@@ -238,8 +238,7 @@
 
       fetch(LEAD_WEBHOOK_URL, {
         method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
         .catch((err) => console.error('Lead webhook failed:', err))
