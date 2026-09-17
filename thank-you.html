@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>תודה! | ההגה בידיים שלי</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css?v=20260914w">
+<style>
+  .thanks-page{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+  }
+  .thanks-card{
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    text-align: center;
+  }
+  .thanks-sheep{ width: 190px; height: auto; margin: 0 auto 8px; display: block; }
+  .thanks-icon{
+    width: 88px;
+    height: 88px;
+    border-radius: 22px;
+    background: var(--yellow-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 26px;
+  }
+  .thanks-icon svg{
+    width: 46px;
+    height: 46px;
+    stroke: var(--navy);
+    fill: none;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .thanks-card h1{
+    color: var(--yellow);
+    font-size: clamp(30px, 5vw, 46px);
+    text-wrap: balance;
+    margin-bottom: 16px;
+  }
+  .thanks-card p{
+    color: rgba(251,251,251,0.82);
+    font-size: clamp(16px, 2vw, 19px);
+    line-height: 1.6;
+    margin: 0 0 34px;
+  }
+  .thanks-note{
+    font-size: 14px !important;
+    color: rgba(251,251,251,0.55) !important;
+    margin-top: 20px !important;
+    margin-bottom: 0 !important;
+  }
+  .thanks-note a{ color: var(--cyan); text-decoration: underline; }
+
+  .thanks-vsl-wrap{ margin-bottom: 30px; }
+  .thanks-social-line{
+    font-size: clamp(17px, 2.2vw, 20px) !important;
+    font-weight: 600;
+    color: var(--white) !important;
+    text-wrap: balance;
+    margin-bottom: 18px !important;
+  }
+  .thanks-social-icons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 34px;
+  }
+  .thanks-social-icon{
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    background: var(--yellow-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .2s ease, background .2s ease;
+  }
+  .thanks-social-icon:hover{ transform: translateY(-3px) scale(1.05); background: var(--yellow); }
+  .thanks-social-icon svg{
+    width: 30px;
+    height: 30px;
+    stroke: var(--navy);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+</style>
+</head>
+<body>
+
+<section class="hero section--dark thanks-page">
+  <div class="hero-bg" aria-hidden="true">
+    <span class="hero-glow hero-glow-a"></span>
+    <span class="hero-glow hero-glow-b"></span>
+  </div>
+  <div class="thanks-card">
+    <img src="assets/img/mascots/sheep-dancing.webp" alt="" class="thanks-sheep">
+    <div class="thanks-icon">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h1>תודה! קיבלנו את הפרטים שלך</h1>
+    <p>ניצור איתך קשר בהקדם לשיחת ההתאמה לתוכנית.<br>שווה לשמור את המספר שממנו נתקשר כדי שלא תפספס/י את השיחה.</p>
+
+    <div class="thanks-vsl-wrap">
+      <div class="vsl" id="vsl-embed">
+        <video id="vsl-video" playsinline controls preload="metadata"></video>
+      </div>
+    </div>
+
+    <p class="thanks-social-line">רוצים להפסיק להיות כבשים? תעקבו אחריי ברשתות 👇</p>
+    <div class="thanks-social-icons">
+      <a href="https://www.instagram.com/smartsheep.cars/" target="_blank" rel="noopener" class="thanks-social-icon" aria-label="אינסטגרם">
+        <svg viewBox="0 0 24 24">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
+      <a href="https://www.tiktok.com/@smartsheep0" target="_blank" rel="noopener" class="thanks-social-icon" aria-label="טיקטוק">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+        </svg>
+      </a>
+    </div>
+
+    <p class="thanks-note">יש שאלה דחופה? אפשר לכתוב לנו למייל <a href="mailto:smartsheep.car@gmail.com">smartsheep.car@gmail.com</a></p>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js"></script>
+<script>
+  (function () {
+    var video = document.getElementById('vsl-video');
+    var VSL_SRC = 'https://vz-631013e3-af8.b-cdn.net/d139d084-2029-4539-b00a-728479c91766/playlist.m3u8';
+    if (!video) return;
+    if (window.Hls && window.Hls.isSupported()) {
+      var hls = new window.Hls();
+      hls.loadSource(VSL_SRC);
+      hls.attachMedia(video);
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = VSL_SRC;
+    }
+  })();
+</script>
+</body>
+</html>

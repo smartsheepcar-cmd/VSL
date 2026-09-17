@@ -216,8 +216,6 @@
   // the row to the team's Google Sheet.
   const LEAD_WEBHOOK_URL = 'https://hook.eu1.make.com/e73ic13hesf3o9q35reh349nsulu07yb';
   const form = document.getElementById('lead-form');
-  const status = document.getElementById('form-status');
-  const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
 
   if (form) {
     form.addEventListener('submit', (e) => {
@@ -234,8 +232,6 @@
         marketingConsent: form.elements['marketing-consent'].checked,
       };
 
-      if (submitBtn) submitBtn.disabled = true;
-
       fetch(LEAD_WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -243,9 +239,7 @@
       })
         .catch((err) => console.error('Lead webhook failed:', err))
         .finally(() => {
-          if (submitBtn) submitBtn.disabled = false;
-          form.reset();
-          if (status) status.classList.add('show');
+          window.location.href = 'thank-you.html';
         });
     });
   }
