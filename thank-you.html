@@ -57,15 +57,28 @@
   .thanks-lesson{ max-width: 620px; margin: 0 auto; }
   .thanks-lesson h2{
     color: var(--yellow);
-    font-size: clamp(21px, 3vw, 27px);
+    font-size: clamp(26px, 4vw, 36px);
     text-wrap: balance;
     margin-bottom: 18px;
   }
-  .thanks-lesson p{ margin-bottom: 16px; }
-  .thanks-lesson p:last-child{ margin-bottom: 0; }
-  .thanks-lesson strong{ color: var(--white); }
+  .thanks-lesson p{ margin-bottom: 0; }
+  .thanks-lesson-small{
+    color: var(--white) !important;
+    font-weight: 700;
+    font-size: clamp(18px, 2.4vw, 22px) !important;
+    text-wrap: balance;
+    margin-top: 24px !important;
+  }
 
-  .thanks-vsl-wrap{ margin-top: 30px; margin-bottom: 30px; }
+  .thanks-vsl-wrap{ margin-top: 22px; margin-bottom: 30px; }
+  .thanks-vsl-status{
+    color: rgba(251,251,251,0.6);
+    font-size: 14px;
+    margin-top: 10px;
+    display: none;
+  }
+  .thanks-vsl-status.show{ display: block; }
+  .thanks-vsl-status a{ color: var(--cyan); text-decoration: underline; }
   .thanks-social-line{
     font-size: clamp(17px, 2.2vw, 20px) !important;
     font-weight: 600;
@@ -115,19 +128,18 @@
       <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
     </div>
     <h1>תודה! קיבלנו את הפרטים שלך</h1>
-    <p>ניצור איתך קשר בהקדם לשיחת ההתאמה לתוכנית.</p>
 
     <div class="thanks-lesson">
-      <h2>עוד לפני שנדבר, השיעור הזה יכול לחסוך לכם הרבה כסף וטעויות</h2>
-      <p>העברתי שיעור קצר ומעשי על <strong>תהליך רכישת רכב נכון</strong>, עם הדברים החשובים שכדאי לדעת לפני שמתחילים לחפש ולפני שסוגרים עסקה.</p>
-      <p>גם אם תיקחו ממנו רק כמה מהעקרונות, תגיעו לרכישה הבאה שלכם <strong>הרבה יותר מוכנים, עם פחות סימני שאלה ועם סיכוי נמוך יותר לעשות טעות יקרה.</strong></p>
-      <p>מומלץ לצפות בו לפני השיחה.</p>
+      <h2>עד שנדבר, יש לי משהו שכדאי לך לראות</h2>
+      <p>העברתי שיעור פרקטי מאוד על איך לגשת נכון לתהליך רכישת רכב, מהחיפוש הראשוני ועד שסוגרים עסקה.</p>
+      <p class="thanks-lesson-small">השיעור הזה לבדו יחסוך לך הרבה כסף וטעויות 👇</p>
     </div>
 
     <div class="thanks-vsl-wrap">
       <div class="vsl" id="vsl-embed">
         <video id="vsl-video" playsinline controls preload="metadata"></video>
       </div>
+      <p class="thanks-vsl-status" id="vsl-status">הסרטון לוקח יותר זמן מהרגיל לטעון. <a href="index.html#vsl-embed">אפשר לצפות בו כאן</a>.</p>
     </div>
 
     <p class="thanks-social-line">רוצים להפסיק להיות כבשים? תעקבו אחריי ברשתות 👇</p>
@@ -152,14 +164,43 @@
 <script>
   (function () {
     var video = document.getElementById('vsl-video');
+    var status = document.getElementById('vsl-status');
     var VSL_SRC = 'https://vz-631013e3-af8.b-cdn.net/d139d084-2029-4539-b00a-728479c91766/playlist.m3u8';
     if (!video) return;
+
+    var stalledTimer = setTimeout(function () {
+      if (video.readyState < 2) {
+        if (status) status.classList.add('show');
+      }
+    }, 10000);
+    video.addEventListener('loadeddata', function () { clearTimeout(stalledTimer); });
+    video.addEventListener('playing', function () { clearTimeout(stalledTimer); });
+
     if (window.Hls && window.Hls.isSupported()) {
       var hls = new window.Hls();
       hls.loadSource(VSL_SRC);
       hls.attachMedia(video);
+      hls.on(window.Hls.Events.ERROR, function (event, data) {
+        console.error('HLS error:', data.type, data.details, data.fatal);
+        if (data.fatal) {
+          if (status) status.classList.add('show');
+          switch (data.type) {
+            case window.Hls.ErrorTypes.NETWORK_ERROR:
+              hls.startLoad();
+              break;
+            case window.Hls.ErrorTypes.MEDIA_ERROR:
+              hls.recoverMediaError();
+              break;
+            default:
+              hls.destroy();
+              break;
+          }
+        }
+      });
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
       video.src = VSL_SRC;
+    } else if (status) {
+      status.classList.add('show');
     }
   })();
 </script>
