@@ -54,15 +54,18 @@
     line-height: 1.6;
     margin: 0 0 34px;
   }
-  .thanks-note{
-    font-size: 14px !important;
-    color: rgba(251,251,251,0.55) !important;
-    margin-top: 20px !important;
-    margin-bottom: 0 !important;
+  .thanks-lesson{ max-width: 620px; margin: 0 auto; }
+  .thanks-lesson h2{
+    color: var(--yellow);
+    font-size: clamp(21px, 3vw, 27px);
+    text-wrap: balance;
+    margin-bottom: 18px;
   }
-  .thanks-note a{ color: var(--cyan); text-decoration: underline; }
+  .thanks-lesson p{ margin-bottom: 16px; }
+  .thanks-lesson p:last-child{ margin-bottom: 0; }
+  .thanks-lesson strong{ color: var(--white); }
 
-  .thanks-vsl-wrap{ margin-bottom: 30px; }
+  .thanks-vsl-wrap{ margin-top: 30px; margin-bottom: 30px; }
   .thanks-social-line{
     font-size: clamp(17px, 2.2vw, 20px) !important;
     font-weight: 600;
@@ -112,7 +115,14 @@
       <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
     </div>
     <h1>תודה! קיבלנו את הפרטים שלך</h1>
-    <p>ניצור איתך קשר בהקדם לשיחת ההתאמה לתוכנית.<br>שווה לשמור את המספר שממנו נתקשר כדי שלא תפספס/י את השיחה.</p>
+    <p>ניצור איתך קשר בהקדם לשיחת ההתאמה לתוכנית.</p>
+
+    <div class="thanks-lesson">
+      <h2>עוד לפני שנדבר, השיעור הזה יכול לחסוך לכם הרבה כסף וטעויות</h2>
+      <p>העברתי שיעור קצר ומעשי על <strong>תהליך רכישת רכב נכון</strong>, עם הדברים החשובים שכדאי לדעת לפני שמתחילים לחפש ולפני שסוגרים עסקה.</p>
+      <p>גם אם תיקחו ממנו רק כמה מהעקרונות, תגיעו לרכישה הבאה שלכם <strong>הרבה יותר מוכנים, עם פחות סימני שאלה ועם סיכוי נמוך יותר לעשות טעות יקרה.</strong></p>
+      <p>מומלץ לצפות בו לפני השיחה.</p>
+    </div>
 
     <div class="thanks-vsl-wrap">
       <div class="vsl" id="vsl-embed">
@@ -135,8 +145,6 @@
         </svg>
       </a>
     </div>
-
-    <p class="thanks-note">יש שאלה דחופה? אפשר לכתוב לנו למייל <a href="mailto:smartsheep.car@gmail.com">smartsheep.car@gmail.com</a></p>
   </div>
 </section>
 
