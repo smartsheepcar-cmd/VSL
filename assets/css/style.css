@@ -1629,6 +1629,42 @@ p{
 }
 .field input:focus{ border-color: var(--cyan); background: var(--white); }
 
+.purchase-points{
+  list-style: none;
+  margin: 0 0 28px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.purchase-points li{
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  text-align: right;
+}
+.purchase-points li svg{
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  color: #16B8B5;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.purchase-note{
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 14px 0 0;
+}
+
 .field-consent{ margin-bottom: 22px; }
 .consent-label{
   display: flex;
