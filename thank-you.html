@@ -71,14 +71,6 @@
   }
 
   .thanks-vsl-wrap{ margin-top: 22px; margin-bottom: 30px; }
-  .thanks-vsl-status{
-    color: rgba(251,251,251,0.6);
-    font-size: 14px;
-    margin-top: 10px;
-    display: none;
-  }
-  .thanks-vsl-status.show{ display: block; }
-  .thanks-vsl-status a{ color: var(--cyan); text-decoration: underline; }
   .thanks-social-line{
     font-size: clamp(17px, 2.2vw, 20px) !important;
     font-weight: 600;
@@ -139,7 +131,6 @@
       <div class="vsl" id="vsl-embed">
         <video id="vsl-video" playsinline controls preload="metadata"></video>
       </div>
-      <p class="thanks-vsl-status" id="vsl-status">הסרטון לוקח יותר זמן מהרגיל לטעון. <a href="index.html#vsl-embed">אפשר לצפות בו כאן</a>.</p>
     </div>
 
     <p class="thanks-social-line">רוצים להפסיק להיות כבשים? תעקבו אחריי ברשתות 👇</p>
@@ -164,17 +155,8 @@
 <script>
   (function () {
     var video = document.getElementById('vsl-video');
-    var status = document.getElementById('vsl-status');
     var VSL_SRC = 'https://vz-631013e3-af8.b-cdn.net/d139d084-2029-4539-b00a-728479c91766/playlist.m3u8';
     if (!video) return;
-
-    var stalledTimer = setTimeout(function () {
-      if (video.readyState < 2) {
-        if (status) status.classList.add('show');
-      }
-    }, 10000);
-    video.addEventListener('loadeddata', function () { clearTimeout(stalledTimer); });
-    video.addEventListener('playing', function () { clearTimeout(stalledTimer); });
 
     if (window.Hls && window.Hls.isSupported()) {
       var hls = new window.Hls();
@@ -183,7 +165,6 @@
       hls.on(window.Hls.Events.ERROR, function (event, data) {
         console.error('HLS error:', data.type, data.details, data.fatal);
         if (data.fatal) {
-          if (status) status.classList.add('show');
           switch (data.type) {
             case window.Hls.ErrorTypes.NETWORK_ERROR:
               hls.startLoad();
@@ -199,8 +180,6 @@
       });
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
       video.src = VSL_SRC;
-    } else if (status) {
-      status.classList.add('show');
     }
   })();
 </script>
