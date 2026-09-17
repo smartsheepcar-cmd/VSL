@@ -1629,14 +1629,12 @@ p{
 }
 .field input:focus{ border-color: var(--cyan); background: var(--white); }
 
-.purchase-price{
-  text-align: center;
-  margin-bottom: 26px;
+.purchase-card{
   background: rgba(46, 230, 227, 0.14);
   border: 1.5px solid var(--navy);
-  border-radius: var(--radius-lg);
-  padding: 26px 22px;
 }
+
+.purchase-price{ text-align: center; margin-bottom: 26px; }
 .purchase-price-save{
   display: inline-block;
   max-width: 420px;
