@@ -438,6 +438,11 @@ p{
   padding: 30px 24px;
   box-shadow: var(--shadow-card);
   text-align: center;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.flow-step:hover{
+  transform: scale(1.045);
+  box-shadow: var(--shadow-pop);
 }
 .num-badge{
   width: 42px;
@@ -611,6 +616,11 @@ p{
   border-radius: 16px;
   padding: 20px 22px;
   box-shadow: var(--shadow-card);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.timeline-card:hover{
+  transform: scale(1.03);
+  box-shadow: var(--shadow-pop);
 }
 .timeline-age{
   display: inline-block;
@@ -756,6 +766,13 @@ p{
   text-decoration: underline;
   text-decoration-color: var(--yellow);
   text-underline-offset: 3px;
+}
+.payoff-line3{
+  text-wrap: balance;
+  font-size: clamp(16px, 2vw, 19px);
+  font-weight: 600;
+  color: var(--white);
+  margin: 0;
 }
 
 .payoff-hero{
