@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>תודה על הרכישה! | ההגה בידיים שלי</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/img/mascots/sheep-logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css?v=20260919b">
+<style>
+  .thanks-page{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+  }
+  .thanks-card{
+    position: relative;
+    z-index: 1;
+    max-width: 620px;
+    text-align: center;
+  }
+  .thanks-sheep{ width: 190px; height: auto; margin: 0 auto 8px; display: block; }
+  .thanks-icon{
+    width: 88px;
+    height: 88px;
+    border-radius: 22px;
+    background: var(--yellow-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 26px;
+  }
+  .thanks-icon svg{
+    width: 46px;
+    height: 46px;
+    stroke: var(--navy);
+    fill: none;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .thanks-card h1{
+    color: var(--yellow);
+    font-size: clamp(30px, 5vw, 46px);
+    text-wrap: balance;
+    margin-bottom: 16px;
+  }
+  .thanks-card p{
+    color: rgba(251,251,251,0.82);
+    font-size: clamp(16px, 2vw, 19px);
+    line-height: 1.6;
+    margin: 0 0 16px;
+  }
+  .thanks-note{
+    font-size: 14px !important;
+    color: rgba(251,251,251,0.55) !important;
+    margin-top: 20px !important;
+    margin-bottom: 0 !important;
+  }
+  .thanks-note a{ color: var(--cyan); text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<section class="hero section--dark thanks-page">
+  <div class="hero-bg" aria-hidden="true">
+    <span class="hero-glow hero-glow-a"></span>
+    <span class="hero-glow hero-glow-b"></span>
+  </div>
+  <div class="thanks-card">
+    <img src="assets/img/mascots/sheep-dancing.webp" alt="" class="thanks-sheep">
+    <div class="thanks-icon">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h1>תודה! הרכישה התקבלה בהצלחה</h1>
+    <p>פרטי הגישה לתוכנית נשלחים אליך עכשיו.</p>
+    <p class="thanks-note">לא קיבלת תוך כמה דקות? אפשר לכתוב לנו למייל <a href="mailto:smartsheep.car@gmail.com">smartsheep.car@gmail.com</a></p>
+  </div>
+</section>
+
+</body>
+</html>
