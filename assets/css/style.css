@@ -1868,15 +1868,17 @@ p{
   list-style: none;
   margin: 0 0 26px;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 28px;
+  row-gap: 12px;
+  text-align: right;
 }
 .purchase-points li{
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-size: 15px;
+  font-size: 16.5px;
   line-height: 1.5;
   color: var(--ink-soft);
   text-align: right;
@@ -1908,16 +1910,10 @@ p{
 
 @media (max-width: 900px){
   .purchase-layout{ grid-template-columns: 1fr; gap: 40px; margin-top: 40px; }
-  .purchase-devices{ height: 250px; max-width: 380px; }
-  .pdv-laptop{ width: 295px; }
-  .pdv-phone{ width: 61px; }
-  .purchase-card{ max-width: 480px; margin: 0 auto; padding: 30px 26px; }
+  .purchase-card{ padding: 30px 26px; }
+  .purchase-points{ grid-template-columns: 1fr; }
 }
 @media (max-width: 480px){
-  .purchase-devices{ height: 195px; max-width: 300px; }
-  .pdv-laptop{ width: 223px; }
-  .pdv-laptop-deck{ margin: -3px -16px 0; }
-  .pdv-phone{ width: 46px; }
   .purchase-card{ padding: 26px 20px; }
 }
 
