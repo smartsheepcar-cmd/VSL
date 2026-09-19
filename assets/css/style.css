@@ -1656,6 +1656,24 @@ p{
   max-width: 1080px;
   margin: 56px auto 0;
 }
+.purchase-layout-solo{
+  display: block;
+  max-width: 900px;
+  text-align: center;
+}
+.purchase-layout-solo .purchase-card{
+  max-width: 100%;
+  margin: 0 auto;
+}
+.purchase-kicker{
+  text-wrap: balance;
+  font-size: clamp(17px, 2.2vw, 20px);
+  font-weight: 600;
+  color: var(--navy);
+  max-width: 640px;
+  margin: 0 auto 26px;
+  line-height: 1.55;
+}
 
 .purchase-devices{
   position: relative;
