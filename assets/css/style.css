@@ -1648,18 +1648,6 @@ p{
 
 /* ---------- purchase section (purchase.html) ---------- */
 
-.purchase-highlight{
-  display: inline-block;
-  color: var(--navy);
-  font-weight: 700;
-  font-size: clamp(17px, 2.2vw, 20px);
-  text-wrap: balance;
-  background: linear-gradient(180deg, transparent 58%, var(--yellow-soft) 58%);
-  padding: 0 4px;
-  border-radius: 3px;
-  margin-top: 6px;
-}
-
 .purchase-layout{
   display: grid;
   grid-template-columns: 1fr 500px;
