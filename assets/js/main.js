@@ -218,12 +218,66 @@
   const form = document.getElementById('lead-form');
 
   if (form) {
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const submitLabel = submitBtn.textContent;
+    let submitting = false;
+
+    const fieldOf = (input) => input.closest('.field');
+    const clearError = (input) => {
+      const field = fieldOf(input);
+      field.classList.remove('has-error');
+      const msg = field.querySelector('.field-error');
+      if (msg) msg.remove();
+    };
+    const showError = (input, text) => {
+      clearError(input);
+      const field = fieldOf(input);
+      field.classList.add('has-error');
+      const msg = document.createElement('p');
+      msg.className = 'field-error';
+      msg.setAttribute('role', 'alert');
+      msg.textContent = text;
+      field.appendChild(msg);
+    };
+    const errorFor = (input) => {
+      if (input.type === 'checkbox') return input.checked ? '' : 'כדי להמשיך צריך לאשר את התיבה';
+      const v = input.value.trim();
+      if (!v) return 'שדה חובה';
+      if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return 'כתובת האימייל לא תקינה';
+      if (input.type === 'tel' && v.replace(/\D/g, '').length < 9) return 'מספר הטלפון לא תקין';
+      return '';
+    };
+
+    form.querySelectorAll('input').forEach((input) => {
+      const evt = input.type === 'checkbox' ? 'change' : 'input';
+      input.addEventListener(evt, () => {
+        if (fieldOf(input).classList.contains('has-error') && !errorFor(input)) clearError(input);
+      });
+    });
+
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      if (!form.checkValidity()) {
-        form.reportValidity();
+      if (submitting) return;
+
+      let firstInvalid = null;
+      form.querySelectorAll('input').forEach((input) => {
+        const text = errorFor(input);
+        if (text) {
+          showError(input, text);
+          if (!firstInvalid) firstInvalid = input;
+        } else {
+          clearError(input);
+        }
+      });
+      if (firstInvalid) {
+        firstInvalid.scrollIntoView({ block: 'center' });
+        firstInvalid.focus({ preventScroll: true });
         return;
       }
+
+      submitting = true;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'שולחים...';
 
       const payload = {
         fullName: form.elements['full-name'].value.trim(),
@@ -232,15 +286,23 @@
         marketingConsent: form.elements['marketing-consent'].checked,
       };
 
+      let redirected = false;
+      const goToThanks = () => {
+        if (redirected) return;
+        redirected = true;
+        window.location.href = 'thank-you.html';
+      };
+      // On a slow or blocked connection, don't leave the visitor stuck on the form.
+      setTimeout(goToThanks, 5000);
+
       fetch(LEAD_WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
+        keepalive: true,
       })
         .catch((err) => console.error('Lead webhook failed:', err))
-        .finally(() => {
-          window.location.href = 'thank-you.html';
-        });
+        .finally(goToThanks);
     });
   }
 })();

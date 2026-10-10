@@ -1645,6 +1645,14 @@ p{
   transition: border-color .15s ease, background .15s ease;
 }
 .field input:focus{ border-color: var(--cyan); background: var(--white); }
+.field.has-error input:not([type="checkbox"]){ border-color: var(--danger); }
+.field-error{
+  margin: 8px 0 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--danger);
+}
+.form-card .btn:disabled{ opacity: .7; cursor: wait; transform: none; }
 
 /* ---------- purchase section (purchase.html) ---------- */
 
