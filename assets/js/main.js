@@ -3,7 +3,7 @@
 (function () {
   // VSL video: HLS stream via hls.js (native playback on Safari/iOS).
   const video = document.getElementById('vsl-video');
-  const VSL_SRC = 'https://vz-631013e3-af8.b-cdn.net/d139d084-2029-4539-b00a-728479c91766/playlist.m3u8';
+  const VSL_SRC = video && video.dataset.src ? video.dataset.src : 'https://vz-631013e3-af8.b-cdn.net/d139d084-2029-4539-b00a-728479c91766/playlist.m3u8';
 
   if (video) {
     if (window.Hls && window.Hls.isSupported()) {
